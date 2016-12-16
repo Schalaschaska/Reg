@@ -1,0 +1,28 @@
+﻿<Window x:Class="Reg.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Reg"
+        mc:Ignorable="d"
+        Title="Reg" Height="350" Width="525">
+    <Grid>
+        <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="20" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Margin="23,52,0,0"/>
+        <Button x:Name="button" Content="Проверить" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="273,52,0,0" Click="button_Click"/>
+        <ComboBox x:Name="comboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Margin="148,52,0,0" Height="20">
+            <TextBlock>Натуральное число</TextBlock>
+            <TextBlock>Вещественное число с 2 знаками после запятой</TextBlock>
+            <TextBlock>Целое число</TextBlock>
+            <TextBlock>Комплексное число</TextBlock>
+            <TextBlock>Почтовый индекс</TextBlock>
+            <TextBlock>html контейнер</TextBlock>
+            <TextBlock>URL</TextBlock>
+            <TextBlock>ФИО</TextBlock>
+            <TextBlock>Телефонный номер</TextBlock>
+            <TextBlock>Электронная почта(com)</TextBlock>
+            <TextBlock>Электронная почта(ru)</TextBlock>
+            
+        </ComboBox>
+
+    </Grid>
+</Window>
