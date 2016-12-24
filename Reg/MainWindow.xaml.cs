@@ -30,10 +30,11 @@ namespace Reg
         {   if (textBox.Text=="")
             {
                 MessageBox.Show("Данные для проверки не введены");
-                if (comboBox.Text == "")
-                {
-                    MessageBox.Show("Ничего не выбрано");
-                }
+               
+            }
+            if (comboBox.Text == "")
+            {
+                MessageBox.Show("Ничего не выбрано");
             }
             else
             {
@@ -48,6 +49,7 @@ namespace Reg
                     else
                         MessageBox.Show("Это не натуральное число");
                 }
+
                 if(comboBox.Text== "Вещественное число с 2 знаками после запятой")
                 {
                     Regex Reg_v_2 = new Regex(@"[0-9]\.\d{2}$");
@@ -76,7 +78,7 @@ namespace Reg
                 }
                 if(comboBox.Text=="Комплексное число")
                 {
-                    Regex Reg_k = new Regex(@"^\d{1}\+\w*i\w*\d{1}$");
+                    Regex Reg_k = new Regex(@"^\s*[+-]?((\d+)?[.,])?(\d*)?\s*[+-]\s*((\d+)?[.,])?(\d+)?[*_x]?[i]\s*$");
                     if(Reg_k.IsMatch(textBox.Text))
                     {
                         MessageBox.Show("Это комплексное число");
@@ -100,7 +102,7 @@ namespace Reg
                 }
                 if(comboBox.Text=="html контейнер")
                 {
-                    Regex Reg_html = new Regex(@"^<\w*>\w*\</\w*\>$");
+                    Regex Reg_html = new Regex(@"^<\w*>\w*\</\w*\>$");//сравнить по строкам
                     if(Reg_html.IsMatch(textBox.Text))
                     {
                         MessageBox.Show("Это html контейнер");
@@ -112,7 +114,7 @@ namespace Reg
                 }
                 if (comboBox.Text == "URL")
                 {
-                    Regex Reg_URL = new Regex(@"^\w*?://([\w-]+.)+[\w-]+(/[\w- ./?%&=])?$");
+                    Regex Reg_URL = new Regex(@"^((https?|ftp)\:\/\/)?([a-z0-9]{1})((\.[a-z0-9-])|([a-z0-9-]))*\.([a-z]{2,6})(\/?)$");
                     if (Reg_URL.IsMatch(textBox.Text))
                     {
                         MessageBox.Show("Это URl");
@@ -124,7 +126,7 @@ namespace Reg
                 }
                 if (comboBox.Text == "ФИО")
                 {
-                    Regex Reg_Fio = new Regex(@"^\w*\s\w*\s\w*$");
+                    Regex Reg_Fio = new Regex(@"^[А-ЯA-Z][а-яa-zА-ЯA-Z\-]{0,}\s[А-ЯA-Z][а-яa-zА-ЯA-Z\-]{1,}(\s[А-ЯA-Z][а-яa-zА-ЯA-Z\-]{1,})?$");
                     if (Reg_Fio.IsMatch(textBox.Text))
                     {
                         MessageBox.Show("Это ФИО");
@@ -136,7 +138,7 @@ namespace Reg
                 }
                 if (comboBox.Text == "Телефонный номер")
                 {
-                    Regex Reg_tel = new Regex(@"^\d{11}$");
+                    Regex Reg_tel = new Regex(@"^\+\d{2}\(\d{3}\)\d{3}-\d{2}-\d{2}$");
                     if (Reg_tel.IsMatch(textBox.Text))
                     {
                         MessageBox.Show("Это телефонный номер");
@@ -148,7 +150,7 @@ namespace Reg
                 }
                 if (comboBox.Text == "Электронная почта(com)")
                 {
-                    Regex Reg_post_com = new Regex(@"^\w*\@\w*\.\w{3}$");
+                    Regex Reg_post_com = new Regex(@"^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$");
                     if (Reg_post_com.IsMatch(textBox.Text))
                     {
                         MessageBox.Show("Это электронная почта");
@@ -160,7 +162,7 @@ namespace Reg
                 }
                 if (comboBox.Text == "Электронная почта(ru)")
                 {
-                    Regex Reg_post_ru = new Regex(@"^\w*\@\w*\.\w{2}$");
+                    Regex Reg_post_ru = new Regex(@"^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[ru]{2}$");
                     if (Reg_post_ru.IsMatch(textBox.Text))
                     {
                         MessageBox.Show("Это электронная почта");
@@ -170,7 +172,44 @@ namespace Reg
                         MessageBox.Show("Это не электронная почта");
                     }
                 }
+                if(comboBox.Text=="Повторы слов")
+                {
+                    string str;
+                    str = Convert.ToString(textBox.Text);
+                    str = string.Join(" ", str.ToLower().Split(' ').Distinct());
+                    MessageBox.Show(str);
 
+                }
+                if(comboBox.Text=="Правописание")
+                {
+                    textBox.SpellCheck.IsEnabled = true;
+                }
+                if(comboBox.Text=="Проверка даты")
+                {
+                    string str_d;
+                    str_d = Convert.ToString(textBox.Text);
+                    DateTime time;
+                    if(DateTime.TryParse(str_d,out time ))
+                    {
+                        MessageBox.Show("Вы введи следуюшую дату\n"+Convert.ToString(time));
+                    }
+                    else
+                    {
+                        MessageBox.Show("Дата введена некорректно");
+                    }
+                }
+
+
+            }
+        }
+
+        private void Window_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.F1)
+            {
+                AboutBox1 F = new AboutBox1();
+                F.ShowDialog();
+                
 
             }
         }
