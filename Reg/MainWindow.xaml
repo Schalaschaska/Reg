@@ -23,7 +23,10 @@
             <TextBlock>Электронная почта(ru)</TextBlock>
             <TextBlock>Повторы слов</TextBlock>
             <TextBlock>Правописание</TextBlock>
-            <TextBlock>Проверка даты</TextBlock>
+            <TextBlock>Проверка даты(1)</TextBlock>
+            <TextBlock>Проверка даты(2)</TextBlock>
+            <TextBlock>Адрес</TextBlock>
+            <TextBlock>Целое число с разделение разрядов</TextBlock>
 
         </ComboBox>
 
